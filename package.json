@@ -1,0 +1,21 @@
+{
+  "author": "Daniel VerWeire <dverweire@gmail.com> (http://dan.verweire.com)",
+  "name": "google-checkout",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wankdanker/node-google-checkout.git"
+  },
+  "dependencies": {
+    "sanitizer": "0.0.15",
+    "request": "2.9.153",
+    "xml2js": "0.1.13"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "description": "A Google Checkout API implementation for node.js",
+  "homepage": "https://github.com/wankdanker/node-google-checkout"
+}
