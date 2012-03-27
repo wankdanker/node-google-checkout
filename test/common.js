@@ -1,10 +1,11 @@
 exports.settings = { 
-	merchantNumber : 'abcd', 
-	merchantKey : '1234',
-	currency : 'USD',
-	pollInterval : 60000
+	merchantNumber : process.env.GOOGLE_CHECKOUT_MERCHANT_NUMBER || 'abcd', 
+	merchantKey : process.env.GOOGLE_CHECKOUT_MERCHANT_KEY || '1234',
+	currency :  process.env.GOOGLE_CHECKOUT_CURRENCY ||'USD',
+	pollInterval : process.env.GOOGLE_CHECKOUT_POLL_INTERVAL || 60000
 };
 
+exports.continueTokenFile = __dirname + '/continueToken.txt';
 exports.googleOrderNumber = '351595665006949';
 exports.merchantOrderNumber = '12345';
 
