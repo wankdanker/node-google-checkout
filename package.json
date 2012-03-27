@@ -17,5 +17,6 @@
     "node": "*"
   },
   "description": "A Google Checkout API implementation for node.js",
-  "homepage": "https://github.com/wankdanker/node-google-checkout"
+  "homepage": "https://github.com/wankdanker/node-google-checkout",
+  "main": "./lib/google-checkout.js"
 }
