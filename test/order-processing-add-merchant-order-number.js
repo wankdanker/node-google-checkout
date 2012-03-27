@@ -3,6 +3,10 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.OrderProcessing.addMerchantOrderNumber('12345','39803489', function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.addMerchantOrderNumber(
+	common.googleOrderNumber
+	,common.merchantOrderNumber
+	, function () {
+		console.log(arguments);
+	}
+);

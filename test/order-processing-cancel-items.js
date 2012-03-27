@@ -3,11 +3,13 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-var items = [
-	{ item_id : 12345 },
-	{ item_id : 23456 }
-];
-
-gc.OrderProcessing.cancelItems('12345', items, true, 'This item is no longer manufactured.', 'Suggest replacement XYZ', function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.cancelItems(
+	common.googleOrderNumber
+	, common.cancelItems
+	, true
+	, 'This item is no longer manufactured.'
+	, 'Suggest replacement XYZ'
+	, function () {
+		console.log(arguments);
+	}
+);

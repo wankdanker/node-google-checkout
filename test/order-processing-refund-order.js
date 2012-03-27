@@ -3,6 +3,12 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.OrderProcessing.refundOrder('12345', 234, 'Damaged Merchandize', 'Discount for inconvenience; ship reaplacement item', function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.refundOrder(
+	common.googleOrderNumber
+	, 234
+	, 'Damaged Merchandize'
+	, 'Discount for inconvenience; ship reaplacement item'
+	, function () {
+		console.log(arguments);
+	}
+);

@@ -3,6 +3,9 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.OrderProcessing.authorizeOrder('12345', function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.authorizeOrder(
+	common.googleOrderNumber
+	, function () {
+		console.log(arguments);
+	}
+);

@@ -3,11 +3,11 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-var items = [
-	{ item_id : 12345 },
-	{ item_id : 23456 }
-];
-
-gc.OrderProcessing.backorderItems('12345', items, true, function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.backorderItems(
+	common.googleOrderNumber
+	, common.backorderItems
+	, true
+	, function () {
+		console.log(arguments);
+	}
+);

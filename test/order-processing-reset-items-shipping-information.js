@@ -3,11 +3,11 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-var items = [
-	{ item_id : 12345 },
-	{ item_id : 23456 }
-];
-
-gc.OrderProcessing.resetItemsShippingInformation('12345', items, true, function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.resetItemsShippingInformation(
+	common.googleOrderNumber
+	, common.resetItems
+	, true
+	, function () {
+		console.log(arguments);
+	}
+);

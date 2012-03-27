@@ -1,25 +1,53 @@
 exports.settings = { 
-	merchantNumber : 'abcdefg', 
-	merchantKey : '12345',
-	currency : 'USD'
+	merchantNumber : 'abcd', 
+	merchantKey : '1234',
+	currency : 'USD',
+	pollInterval : 60000
 };
 
-exports.items = [{
-	name : '5 lbs. Dog Food',
-	description : '5 lb. bag of dog food',
-	unitPrice : 35.00,
-	currency : 'USD',
-	quantity : 1,
-	item_id : '1532B34FF'
-}
-,{
-	name : 'Sammy Hagar\s Greatest Hits',
-	description : 'Sammy Hagar - Essential Red Collection CD&',
-	unitPrice : 15.00,
-	currency : 'USD',
-	quantity : 2,
-	item_id : '2B94JG93JDF'
-}];
+exports.googleOrderNumber = '351595665006949';
+exports.merchantOrderNumber = '12345';
+
+exports.items 
+= exports.returnItems 
+= exports.backorderItems 
+= exports.cancelItems 
+= exports.resetItems
+= [
+	{
+		name : '5 lbs. Dog Food',
+		description : '5 lb. bag of dog food',
+		unitPrice : 35.00,
+		currency : 'USD',
+		quantity : 1,
+		item_id : '1532B34FF'
+	}
+	,{
+		name : 'Sammy Hagar\'s Greatest Hits',
+		description : 'Sammy Hagar - Essential Red Collection CD&',
+		unitPrice : 15.00,
+		currency : 'USD',
+		quantity : 2,
+		item_id : '2B94JG93JDF'
+	}
+];
+
+exports.shipItems = [
+	{ 
+		item_id : exports.items[0].item_id,
+		trackingData : [
+			{ carrier : 'FedEx', trackingNumber : '1234567890' },
+			{ carrier : 'FedEx', trackingNumber : '1234567891' }
+		]
+	},
+	{
+		item_id : exports.items[1].item_id,
+		trackingData : [
+			{ carrier : 'FedEx', trackingNumber : '1234567890' },
+			{ carrier : 'FedEx', trackingNumber : '1234567891' }
+		]
+	}
+];
 
 exports.shipMethods = [
 {

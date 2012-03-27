@@ -3,6 +3,11 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.OrderProcessing.sendBuyerMessage('12345','Your order will ship tomorrow.', true, function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.sendBuyerMessage(
+	common.googleOrderNumber
+	,'Your order will ship tomorrow.'
+	, true
+	, function () {
+		console.log(arguments);
+	}
+);

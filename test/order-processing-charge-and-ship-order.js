@@ -3,6 +3,11 @@ var GoogleCheckout = require('../').GoogleCheckout,
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.OrderProcessing.chargeAndShipOrder('12345', 234, { carrier : 'UPS', trackingNumber : '123453423453' }, function () {
-	console.log(arguments);
-});
+gc.OrderProcessing.chargeAndShipOrder(
+	common.googleOrderNumber
+	, 234 
+	, { carrier : 'UPS', trackingNumber : '123453423453' }
+	, function () {
+		console.log(arguments);
+	}
+);
