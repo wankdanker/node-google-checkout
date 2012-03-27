@@ -2,7 +2,8 @@ exports.settings = {
 	merchantNumber : process.env.GOOGLE_CHECKOUT_MERCHANT_NUMBER || 'abcd', 
 	merchantKey : process.env.GOOGLE_CHECKOUT_MERCHANT_KEY || '1234',
 	currency :  process.env.GOOGLE_CHECKOUT_CURRENCY ||'USD',
-	pollInterval : process.env.GOOGLE_CHECKOUT_POLL_INTERVAL || 60000
+	pollInterval : process.env.GOOGLE_CHECKOUT_POLL_INTERVAL || 60000,
+	timeZone : process.env.GOOGLE_CHECKOUT_TIME_ZOME || 'America/New_York'
 };
 
 exports.continueTokenFile = __dirname + '/continueToken.txt';
@@ -25,7 +26,7 @@ exports.items
 	}
 	,{
 		name : 'Sammy Hagar\'s Greatest Hits',
-		description : 'Sammy Hagar - Essential Red Collection CD&',
+		description : 'Sammy Hagar - Essential Red Collection CD & DVD',
 		unitPrice : 15.00,
 		currency : 'USD',
 		quantity : 2,
