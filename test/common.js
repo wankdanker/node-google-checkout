@@ -6,7 +6,8 @@ exports.settings = {
 	timeZone : process.env.GOOGLE_CHECKOUT_TIME_ZOME || 'America/New_York'
 };
 
-exports.continueTokenFile = __dirname + '/continueToken.txt';
+exports.continueTokenFile = __dirname + '/continueToken.json';
+exports.orderPath = __dirname + '/orders';
 exports.googleOrderNumber = '351595665006949';
 exports.merchantOrderNumber = '12345';
 
