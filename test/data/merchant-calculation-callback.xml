@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merchant-calculation-callback xmlns="http://checkout.google.com/schema/2">
+	<shopping-cart>
+		<cart-expiration>
+			<good-until-date>2007-12-31T23:59:59-05:00</good-until-date>
+		</cart-expiration>
+		<items>
+			<item>
+				<merchant-item-id>GGLAA1453</merchant-item-id>
+				<item-name>Dry Food Pack</item-name>
+				<item-description>One pack of nutritious dried food for emergencies.</item-description>
+				<quantity>1</quantity>
+				<unit-price currency="USD">4.99</unit-price>
+			</item>
+			<item>
+				<merchant-item-id>MGS2GBMP3</merchant-item-id>
+				<item-name>Megasound 2GB MP3 Player</item-name>
+				<item-description>This portable MP3 player stores 500 songs.</item-description>
+				<quantity>1</quantity>
+				<unit-price currency="USD">179.99</unit-price>
+			</item>
+		</items>
+	</shopping-cart>
+
+	<buyer-language>en_US</buyer-language>
+	<calculate>
+		<addresses>
+			<anonymous-address id="739030698069958">
+				<country-code>US</country-code>
+				<city>Anchorage</city>
+				<region>AK</region>
+				<postal-code>99501</postal-code>
+			</anonymous-address>
+			<anonymous-address id="458902590875897">
+				<country-code>US</country-code>
+				<city>Rochester</city>
+				<region>NY</region>
+				<postal-code>14614</postal-code>
+			</anonymous-address>
+		</addresses>
+		<tax>true</tax>
+		<shipping>
+			<method name="UPS 2nd Day Air"/>
+			<method name="UPS Ground"/>
+		</shipping>
+		<merchant-code-strings>
+			<merchant-code-string code="GiftCert012345"/>
+			<merchant-code-string code="FirstVisitCoupon"/>
+		</merchant-code-strings>
+	</calculate>
+</merchant-calculation-callback>
