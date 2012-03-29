@@ -4,6 +4,10 @@ exports.settings = {
 	currency :  process.env.GOOGLE_CHECKOUT_CURRENCY ||'USD',
 	pollInterval : process.env.GOOGLE_CHECKOUT_POLL_INTERVAL || 60000,
 	timeZone : process.env.GOOGLE_CHECKOUT_TIME_ZOME || 'America/New_York'
+	merchantCalculationsUrl : null,
+	merchantCalculationsAcceptCoupons : false,
+	merchantCalculationsAcceptGiftCertifications : false,
+	merchantCalculationsShipping : false
 };
 
 exports.continueTokenFile = __dirname + '/continueToken.json';
