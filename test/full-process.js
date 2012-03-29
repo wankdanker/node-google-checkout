@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common'),
 	readJSON = require('./readJSON'),
 	writeJSON = require('./writeJSON'),

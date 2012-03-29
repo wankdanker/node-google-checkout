@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common');
 
 var gc = new GoogleCheckout(common.settings);
@@ -9,7 +9,8 @@ gc.OrderProcessing.cancelItems(
 	, true
 	, 'This item is no longer manufactured.'
 	, 'Suggest replacement XYZ'
-	, function () {
-		console.log(arguments);
+	, function (err, xml) {
+		console.log(xml);
 	}
+	, true
 );

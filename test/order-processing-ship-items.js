@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common');
 
 var gc = new GoogleCheckout(common.settings);
@@ -7,7 +7,8 @@ gc.OrderProcessing.shipItems(
 	common.googleOrderNumber
 	, common.shipItems
 	, true
-	, function () {
-		console.log(arguments);
+	, function (err, xml) {
+		console.log(xml);
 	}
+	, true
 );

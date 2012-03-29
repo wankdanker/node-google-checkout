@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common');
 
 var gc = new GoogleCheckout(common.settings);
@@ -6,7 +6,8 @@ var gc = new GoogleCheckout(common.settings);
 gc.OrderProcessing.addMerchantOrderNumber(
 	common.googleOrderNumber
 	,common.merchantOrderNumber
-	, function () {
-		console.log(arguments);
+	, function (err, xml) {
+		console.log(xml);
 	}
+	, true
 );

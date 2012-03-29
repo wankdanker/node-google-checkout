@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common');
 
 var gc = new GoogleCheckout(common.settings);
@@ -8,7 +8,8 @@ gc.OrderProcessing.refundOrder(
 	, 234
 	, 'Damaged Merchandize'
 	, 'Discount for inconvenience; ship reaplacement item'
-	, function () {
-		console.log(arguments);
+	, function (err, xml) {
+		console.log(xml);
 	}
+	, true
 );

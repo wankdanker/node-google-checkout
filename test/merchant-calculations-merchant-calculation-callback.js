@@ -1,4 +1,4 @@
-var GoogleCheckout = require('../').GoogleCheckout,
+var GoogleCheckout = require('../'),
 	common = require('./common'),
 	path = require('path'),
 	fs = require('fs');
@@ -27,7 +27,7 @@ gc.MerchantCalculations.on('merchantCalculationCallback', function (obj, callbac
 				//if you are using this as an example, you would need to do your
 				//own magic to determine if the code is a gift-certificate or
 				//a coupon. 
-				if (/GiftCert/.test(merchant.code) {
+				if (/GiftCert/.test(merchant.code)) {
 					merchantCode.type = 'gift-certificate';
 				}
 				else {
