@@ -11,7 +11,9 @@
     "request": "2.9.153",
     "xml2js": "0.1.13"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dox": "0.3.0"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
