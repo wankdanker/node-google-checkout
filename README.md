@@ -8,7 +8,7 @@ Status
 
 This API is currently working in the sandbox environment. I am working on documentation.
 
-ShoppingCart------(GoogleCheckout)
+#ShoppingCart(GoogleCheckout)
 
 The `ShoppingCart` module provides methods for adding items, adding shipping options
 and submitting a shopping cart to Google. After submitting the shopping cart to 
