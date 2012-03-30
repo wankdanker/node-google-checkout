@@ -3,11 +3,13 @@ var GoogleCheckout = require('../'),
 
 var gc = new GoogleCheckout(common.settings);
 
-gc.CheckOut.addItem(common.items[0]);
-gc.CheckOut.addItem(common.items[1]);
-gc.CheckOut.addShipMethod(common.shipMethods[0]);
-gc.CheckOut.addShipMethod(common.shipMethods[1]);
+gc.createCart(function (err, cart) {
+	cart.addItem(common.items[0]);
+	cart.addItem(common.items[1]);
+	cart.addShipMethod(common.shipMethods[0]);
+	cart.addShipMethod(common.shipMethods[1]);
 
-gc.CheckOut.postCart(function (err, data) {
-	console.log(data);
-},true);
+	cart.postCart(function (err, data) {
+		console.log(data);
+	},true);
+});
