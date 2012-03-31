@@ -1,7 +1,8 @@
 var dox = require('dox'),
 	path = require('path'),
 	fs = require('fs')
-	map = require('../lib/utils').map;
+	map = require('../lib/utils').map,
+	package = require('../package.json');
 
 var libPath = path.join(__dirname, '../lib');
 var files = [
@@ -12,7 +13,20 @@ var files = [
 var outstream = fs.createWriteStream(path.join(__dirname, '../test.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
-	files.forEach(function (file) {  
+	writeln('node-google-checkout');
+	writeln('====================');
+	writeln('');
+	writeln(package.description);
+	writeln('');
+	writeln('Status');
+	writeln('------');
+	writeln('');
+	writeln('This API is currently working in the sandbox environment. I am working on documentation.');
+	writeln('');
+	
+	files.forEach(function (file) {
+		if (!/shopping-cart\.js/.test(file)) return;
+				  
 		if (/\.js$/.test(file)) {
 			docifyFile(path.join(libPath, file));
 		}
