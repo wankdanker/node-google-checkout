@@ -6,11 +6,11 @@ var dox = require('dox'),
 
 var libPath = path.join(__dirname, '../lib');
 var files = [
-	//'google-checkout.js'//,
+	'google-checkout.js',
 	'shopping-cart.js'
 ];
 
-var outstream = fs.createWriteStream(path.join(__dirname, '../test.md'), { flags :'w', encoding : 'utf8' } );
+var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
 	writeln('node-google-checkout');
@@ -25,8 +25,6 @@ outstream.on('open', function () {
 	writeln('');
 	
 	files.forEach(function (file) {
-		if (!/shopping-cart\.js/.test(file)) return;
-				  
 		if (/\.js$/.test(file)) {
 			docifyFile(path.join(libPath, file));
 		}
