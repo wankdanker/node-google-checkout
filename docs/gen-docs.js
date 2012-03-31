@@ -4,13 +4,15 @@ var dox = require('dox'),
 	map = require('../lib/utils').map;
 
 var libPath = path.join(__dirname, '../lib');
-var files = fs.readdirSync(libPath);
+var files = [
+	//'google-checkout.js'//,
+	'shopping-cart.js'
+];
+
 var outstream = fs.createWriteStream(path.join(__dirname, '../test.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
-	files.forEach(function (file) {
-		if (!/shopping-cart\.js/.test(file)) return;
-				  
+	files.forEach(function (file) {  
 		if (/\.js$/.test(file)) {
 			docifyFile(path.join(libPath, file));
 		}
@@ -69,7 +71,9 @@ function docifyFile(file) {
 			
 		});
 	}
-	catch (e) {}
+	catch (e) {
+		console.log(e.stack);
+	}
 }
 
 function writeln(str) {
