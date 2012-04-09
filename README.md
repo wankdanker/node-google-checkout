@@ -70,11 +70,13 @@ var gc = new GoogleCheckout({
 
 ###Arguments
 - __settings__ - An object of settings
+
 ###.createCart(callback)
 Create a new instance of `ShoppingCart`
 
 ###Arguments
 - __callback__ - 
+
 ###.postXML(url, xml, callback)
 Post `xml` to `url` via an HTTP request.
 
@@ -86,6 +88,7 @@ and '{merchantKey}' with `settings.merchantNumber` and
 - __url__ - 
 - __xml__ - 
 - __callback__ - 
+
 ###.parseXML(xml, callback)
 Parse a string of XML and convert it to a JavaScript object.
 
@@ -100,6 +103,7 @@ This gives us consistent camel case objects returned from Google.
 ###Arguments
 - __xml__ - 
 - __callback__ - 
+
 
 -----------
 
@@ -153,6 +157,7 @@ gc.createCart(function (err, cart) {
 
 ###Arguments
 - __GoogleCheckout__ - A GoogleCheckout instance object.
+
 ###.addItem(name, description, unitPrice, quantity, item_id, currency)
 Add an item to the list of items currently in the shopping cart.
 
@@ -200,6 +205,7 @@ gc.createCart(function (err, cart) {
 - __quantity__ - 
 - __item_id__ - 
 - __currency__ - 
+
 ###.addShipMethod(ShippingMethodObject)
 Add a shipping option to the shopping cart
 
@@ -229,6 +235,7 @@ gc.createCart(function (err, cart) {
 
 ###Arguments
 - __ShippingMethodObject__ - 
+
 ###.postCart(Callback, ReturnXML)
 Build and post the shopping cart to Google
 
@@ -257,6 +264,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#chec
 ###Arguments
 - __Callback__ - 
 - __ReturnXML__ - If specified, callback will be called with the XML that would be supplied to Google.
+
 
 -----------
 
@@ -287,6 +295,7 @@ gc.OrderProcessing.chargeAndShipOrder(
 
 ###Arguments
 - __GoogleCheckout__ - a `GoogleCheckout` instance
+
 ###.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)
 Charge and Ship an order
 
@@ -295,6 +304,7 @@ Charge and Ship an order
 - __amount__ - 
 - __trackingData__ - 
 - __callback__ - 
+
 ###.refundOrder(googleOrderNumber, amount, reason, comment, callback)
 Refund an order
 
@@ -304,6 +314,7 @@ Refund an order
 - __reason__ - 
 - __comment__ - 
 - __callback__ - 
+
 ###.cancelOrder(googleOrderNumber, reason, comment, callback)
 Cancel an order
 
@@ -312,12 +323,14 @@ Cancel an order
 - __reason__ - 
 - __comment__ - 
 - __callback__ - 
+
 ###.authorizeOrder(googleOrderNumber, callback)
 Authorize an order
 
 ###Arguments
 - __googleOrderNumber__ - 
 - __callback__ - 
+
 ###.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)
 Add Merchant order number to an order
 
@@ -325,6 +338,7 @@ Add Merchant order number to an order
 - __googleOrderNumber__ - 
 - __merchantOrderNumber__ - 
 - __callback__ - 
+
 ###.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)
 Send the buyer a message
 
@@ -333,6 +347,7 @@ Send the buyer a message
 - __message__ - 
 - __sendEmail__ - 
 - __callback__ - 
+
 ###.shipItems(googleOrderNumber, items, sendEmail, callback)
 Ship Items on an order
 
@@ -353,6 +368,7 @@ items = [
 - __items__ - 
 - __sendEmail__ - 
 - __callback__ - 
+
 ###.backorderItems(googleOrderNumber, items, sendEmail, callback)
 Backorder items on an order
 
@@ -361,6 +377,7 @@ Backorder items on an order
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
+
 ###.returnItems(googleOrderNumber, items, sendEmail, callback)
 Return items on an order
 
@@ -369,6 +386,7 @@ Return items on an order
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
+
 ###.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)
 Cancel items on an order
 
@@ -379,6 +397,7 @@ Cancel items on an order
 - __reason__ - 
 - __comment__ - 
 - __callback__ - 
+
 ###.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)
 Reset shipping information for items on an order
 
@@ -387,6 +406,7 @@ Reset shipping information for items on an order
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
+
 ###.processOrder(googleOrderNumber, callback)
 Process an Order
 
@@ -397,6 +417,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###Arguments
 - __googleOrderNumber__ - 
 - __callback__ - 
+
 ###.deliverOrder(googleOrderNumber, trackingData, callback)
 Deliver an order
 
@@ -417,6 +438,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 - __googleOrderNumber__ - 
 - __trackingData__ - 
 - __callback__ - 
+
 ###.addTrackingData(googleOrderNumber, trackingData, callback)
 Add tracking Data to an order
 
@@ -437,6 +459,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 - __googleOrderNumber__ - 
 - __trackingData__ - 
 - __callback__ - 
+
 ###.archiveOrder(googleOrderNumber, callback)
 Archive an order
 
@@ -447,6 +470,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving
 ###Arguments
 - __googleOrderNumber__ - 
 - __callback__ - 
+
 ###.unarchiveOrder(googleOrderNumber, callback)
 Unarchive an order
 
@@ -458,9 +482,11 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving
 ###Arguments
 - __googleOrderNumber__ - 
 - __callback__ - 
+
 ###.orderListRequest
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Report_API.html#Sending_an_Order_Report_API_Request
 ###Arguments
+
 
 -----------
 
@@ -471,6 +497,7 @@ Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
 
 ###Arguments
 - __An__ - instance of a GoogleCheckout object
+
 ###.merchantCalculationCallback
 {
 	shoppingCart : {
@@ -506,6 +533,7 @@ Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
 	]
 }
 ###Arguments
+
 
 -----------
 
@@ -547,6 +575,7 @@ an instance of Polling
 
 ###Arguments
 - __objGoogleCheckout__ - An instance of a GoogleCheckout object
+
 ###.notificationDataTokenRequest(StartTime, Callback)
 Request a _continueToken_ for polling
 
@@ -557,6 +586,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.
 ###Arguments
 - __StartTime__ - 
 - __Callback__ - function
+
 ###.notificationDataRequest(ContinueToken, Callback)
 Request notification data
 
@@ -567,6 +597,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.
 ###Arguments
 - __ContinueToken__ - The token retrieved from Google by `notificationDataTokenRequest`
 - __Callback__ - function
+
 ###.run
 @param {String} ContinueToken Optional - The token retrieved from Google by `notificationDataTokenRequest`
 ###Arguments
+

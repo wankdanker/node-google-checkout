@@ -99,6 +99,7 @@ function docifyFile(file) {
 					writeln('- __' + param.name + '__ - ' + param.description);
 				});
 			}
+			writeln('');
 		});
 	}
 	catch (e) {
