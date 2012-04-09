@@ -8,7 +8,10 @@ var libPath = path.join(__dirname, '../lib');
 var files = [
 	'google-checkout.js',
 	'shopping-cart.js',
-	'order-processing.js'
+	'order-processing.js',
+	'order-reporting.js',
+	'merchant-calculations.js',
+	'polling.js'
 ];
 
 var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );

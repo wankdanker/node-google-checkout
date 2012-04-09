@@ -231,7 +231,7 @@ cart.postCart(function (err, redirectUrl) {
 });
 ```
 
-## TODO
+TODO
 - Tax Tables
 - Shipping Restrictions
 
@@ -242,38 +242,249 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#chec
 
 -----------
 
-#OrderProcessing
+#OrderProcessing(GoogleCheckout)
 
-The `OrderProcessing` module
-##.chargeAndShipOrder
+The `OrderProcessing` module is used to charge and update order information
 
-Financial Requests
-##.addMerchantOrderNumber
+There is no need to manually create an instance of this constructor function. Once you
+have an instance of GoogleCheckout, you already have an instance...
 
-Fulfillment Requests
-##.shipItems
+Example
 
-## items 
+```javascript
+var gc = new GoogleCheckout(settings);
 
-[{
+gc.OrderProcessing.chargeAndShipOrder(
+	'1234569034'
+	, 50.24
+	, ['1Z2343452345234'
+	, function (err, response) {
+		if (err) {
+			//deal with the error
+			return;
+		}
+
+		//process the response
+});
+```
+
+##.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)
+
+Charge and Ship an order
+
+##.refundOrder(googleOrderNumber, amount, reason, comment, callback)
+
+Refund an order
+
+##.cancelOrder(googleOrderNumber, reason, comment, callback)
+
+Cancel an order
+
+##.authorizeOrder(googleOrderNumber, callback)
+
+Authorize an order
+
+##.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)
+
+Add Merchant order number to an order
+
+##.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)
+
+Send the buyer a message
+
+##.shipItems(googleOrderNumber, items, sendEmail, callback)
+
+Ship Items on an order
+
+```javascript 
+items = [
+	{
 		item_id : 123456,
 		trackingData : [
 			{ carrier : 'UPS', trackingNumber : '55555555' },
 			{ carrier : 'UPS', trackingNumber : '55555556' }
 		]
-}]
-##.processOrder
+	}
+];
+
+##.backorderItems(googleOrderNumber, items, sendEmail, callback)
+
+Backorder items on an order
+
+##.returnItems(googleOrderNumber, items, sendEmail, callback)
+
+Return items on an order
+
+##.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)
+
+Cancel items on an order
+
+##.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)
+
+Reset shipping information for items on an order
+
+##.processOrder(googleOrderNumber, callback)
+
+Process an Order
+
+Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order
-##.deliverOrder
+
+##.deliverOrder(googleOrderNumber, trackingData, callback)
+
+Deliver an order
+
+```javascript
+trackingData = [
+	{
+		carrier : 'UPS',
+		trackingNumber : '1Z2343452345234'
+	}
+];
+```
+
+Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order
-##.addTrackingData
+
+##.addTrackingData(googleOrderNumber, trackingData, callback)
+
+Add tracking Data to an order
+
+```javascript
+trackingData = [
+	{
+		carrier : 'UPS',
+		trackingNumber : '1Z2343452345234'
+	}
+];
+``` 
+
+Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data
-##.archiveOrder
+
+##.archiveOrder(googleOrderNumber, callback)
+
+Archive an order
+
+Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order
-##.unarchiveOrder
+
+##.unarchiveOrder(googleOrderNumber, callback)
+
+Unarchive an order
+
+
+Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order
+
+##.orderListRequest
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Report_API.html#Sending_an_Order_Report_API_Request
+
+-----------
+
+#MerchantCalculations(An)
+
+Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
+
+## Examples
+
+##.merchantCalculationCallback
+
+{
+	shoppingCart : {
+		//google-supplied shopping cart data
+	},
+	addresses : [
+		{
+			id : 'google-supplied-id',
+			countryCode : 'google-supplied-country-code',
+			city : 'google-supplied-city',
+			region : 'google-supplied-region',
+			postalCode : 'google-supplied-postal-code',
+			
+			//if callbacks enabled for shipping
+			shippingName : 'google-supplied-shipping-name',
+			shippingRate : 'REQUIRED',
+			shippingCurrency : 'OPTIONAL-OR-USE-DEFAULT',
+			shippable : 'REQUIRED',
+			
+			//if callbacks enabled for tax
+			totalTax : 'REQUIRED',
+			
+			//if callbacks enabled for merchantCodes
+			merchantCodes : [
+				{
+					type : 'REQUIRED (coupon or gift-certificate) ',
+					valid : 'REQUIRED (true or false)',
+					calculatedAmount : 'REQUIRED',
+					message: 'REQUIRED/OPTIONAL - idk'
+				}
+			]
+		}
+	]
+}
+
+-----------
+
+#Polling(objGoogleCheckout)
+
+Instantiate an instance of the GoogleCheckout Polling prototype
+
+## Examples
+
+    var gc = new GoogleCheckout({ merchantNumber : '1234', merchantKey : 'ABCD', currency : 'USD'});
+    var p = new Polling(gc);
+
+This is not really necessary though because an instance of GoogleCheckout contains
+an instance of Polling
+
+    var gc = new GoogleCheckout({ merchantNumber : '1234', merchantKey : 'ABCD', currency : 'USD'});
+
+    gc.Polling.on('newOrderNotification', function (order) {
+      console.log(order)
+    });
+
+    gc.Polling.run();
+
+## Continue Token Events
+
+- notificationDataTokenResponse - 'Raw'
+- continueToken
+
+
+## Notification Events
+
+- notificationDataResponse - 'Raw'
+- newOrderNotification
+- authorizationAmountNotification
+- riskInformationNotification
+- orderStateChangeNotification
+- chargeAmountNotification
+- refundAmountNotification
+- chargebackAmountNotification
+
+##.notificationDataTokenRequest(StartTime, Callback)
+
+Request a _continueToken_ for polling
+
+## Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-token-request
+
+##.notificationDataRequest(ContinueToken, Callback)
+
+Request notification data
+
+Documentation: 
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-request
+
+##.run
+
+@param {String} ContinueToken Optional - The token retrieved from Google by `notificationDataTokenRequest`
