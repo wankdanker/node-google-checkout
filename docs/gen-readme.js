@@ -69,7 +69,7 @@ function docifyFile(file) {
 			else {
 				//write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
 				writeln('-----------');
-				write('###' + '.' + block.ctx.name);
+				write('.' + block.ctx.name);
 			}
 			
 			var params = getParams(block.tags);
