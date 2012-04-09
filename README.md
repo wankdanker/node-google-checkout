@@ -1,15 +1,12 @@
-node-google-checkout
-====================
+#node-google-checkout
 
 A Google Checkout API implementation for node.js
 
-Status
-------
+##Status
 
 This API is currently working in the sandbox environment. I am working on documentation.
 
-Dependencies
-------------
+##Dependencies
 
  - sanitizer version 0.0.15
  - request version 2.9.153

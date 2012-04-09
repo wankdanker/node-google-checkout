@@ -14,18 +14,15 @@ var files = [
 var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
-	writeln('node-google-checkout');
-	writeln('====================');
+	writeln('#node-google-checkout');
 	writeln('');
 	writeln(package.description);
 	writeln('');
-	writeln('Status');
-	writeln('------');
+	writeln('##Status');
 	writeln('');
 	writeln('This API is currently working in the sandbox environment. I am working on documentation.');
 	writeln('');
-	writeln('Dependencies');
-	writeln('------------');
+	writeln('##Dependencies');
 	writeln('');
 	
 	map(package.dependencies, function (pack, version) {
