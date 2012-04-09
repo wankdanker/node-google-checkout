@@ -15,9 +15,9 @@ Dependencies
  - request version 2.9.153
  - xml2js version 0.1.13
 
-#GoogleCheckout(settings)
 -----------
 
+#GoogleCheckout(settings)
 
 The `GoogleCheckout` constructor function.
 
@@ -96,9 +96,10 @@ the `camelCaseObjectKeys()` function.
 
 This gives us consistent camel case objects returned from Google.
 
-#ShoppingCart(GoogleCheckout)
+
 -----------
 
+#ShoppingCart(GoogleCheckout)
 
 The `ShoppingCart` module provides methods for adding items, adding shipping options
 and submitting a shopping cart to Google. After submitting the shopping cart to 
@@ -241,9 +242,10 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#checkout_api
 
-#OrderProcessing
+
 -----------
 
+#OrderProcessing
 
 The `OrderProcessing` module
 ###.chargeAndShipOrder

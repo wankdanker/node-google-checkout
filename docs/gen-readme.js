@@ -32,8 +32,6 @@ outstream.on('open', function () {
 		writeln(' - ' + pack + ' version ' + version);
 	});
 	
-	writeln('');
-	
 	files.forEach(function (file) {
 		if (/\.js$/.test(file)) {
 			docifyFile(path.join(libPath, file));
@@ -63,6 +61,9 @@ function docifyFile(file) {
 			}
 			
 			if (!block.ctx.hasOwnProperty('constructor')) {
+				writeln('');
+				writeln('-----------');
+				writeln('');
 				write('#' + block.ctx.name);
 			}
 			else {
@@ -86,11 +87,6 @@ function docifyFile(file) {
 				});
 				
 				write(')');
-			}
-			
-			if (!block.ctx.hasOwnProperty('constructor')){
-				writeln('');
-				writeln('-----------');
 			}
 			
 			writeln('');
