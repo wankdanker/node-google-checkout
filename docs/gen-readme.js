@@ -93,8 +93,6 @@ function docifyFile(file) {
 			writeln(block.description.summary)
 			writeln('');
 			
-			writeln('###Arguments');
-			
 			if (params.length) {
 				params.forEach(function (param, ix) {
 					writeln('- __' + param.name + '__ - ' + param.description);
