@@ -1,0 +1,769 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Node-google-checkout by wankdanker</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Node-google-checkout</h1>
+        <p>A Google Checkout API implementation for node.js</p>
+        <p class="view"><a href="https://github.com/wankdanker/node-google-checkout">View the Project on GitHub <small>wankdanker/node-google-checkout</small></a></p>
+        <ul>
+          <li><a href="https://github.com/wankdanker/node-google-checkout/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wankdanker/node-google-checkout/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wankdanker/node-google-checkout">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>node-google-checkout</h1>
+
+<p>A Google Checkout API implementation for node.js</p>
+
+<h2>Status</h2>
+
+<p>This API is currently working in the sandbox environment. I am working on documentation.</p>
+
+<h2>Dependencies</h2>
+
+<ul>
+<li>sanitizer version 0.0.15</li>
+<li>request version 2.9.153</li>
+<li>xml2js version 0.1.13</li>
+</ul><hr><h1>GoogleCheckout(settings)</h1>
+
+<p>The <code>GoogleCheckout</code> constructor function.</p>
+
+<p><strong>settings</strong> - An object of settings</p>
+
+<p>This is the main constructor function and where all of the magic starts.
+Once you have an instance of <code>GoogleCheckout</code> you have access to all of
+the following submodules</p>
+
+<ul>
+<li>ShoppingCart - <code>GoogleCheckout.createCart()</code>
+</li>
+<li>MerchantCalculations - <code>GoogleCheckout.MerchantCalculations</code>
+</li>
+<li>Notification - <code>GoogleCheckout.Notification</code>
+</li>
+<li>Polling - <code>GoogleCheckout.Polling</code>
+</li>
+<li>OrderProcessing - <code>GoogleCheckout.OrderProcessing</code>
+</li>
+<li>OrderReporting - <code>GoogleCheckout.OrderReporting</code>
+</li>
+</ul><p>Settings</p>
+
+<div class="highlight">
+<pre><span class="nx">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">merchantNumber</span> <span class="o">:</span> <span class="s1">'YOUR MERCHANT NUMBER'</span><span class="p">,</span>
+    <span class="nx">merchantKey</span> <span class="o">:</span> <span class="s1">'YOUR MERCHANT KEY'</span><span class="p">,</span>
+    <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'YOUR CURRENCY - LIKE USD'</span><span class="p">,</span>
+    <span class="nx">timeZone</span> <span class="o">:</span> <span class="s1">'America/New_York'</span><span class="p">,</span>
+    <span class="nx">merchantCalculationsUrl</span> <span class="o">:</span> <span class="s1">'<a href="http://yoursite.com/merchant-callback-url">http://yoursite.com/merchant-callback-url</a>'</span><span class="p">,</span>
+    <span class="nx">merchantCalculationsAcceptCoupons</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">merchantCalculationsAcceptGiftCertifications</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">merchantCalculationsShipping</span> <span class="o">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<ul>
+<li>
+<strong>merchantNumber</strong> : your merchant number obtained from Google</li>
+<li>
+<strong>merchantKey</strong> : your merchant key obtained from Google</li>
+<li>
+<strong>currency</strong> : the default currency for your site. If you have this set, you can ignore
+setting this value in methods that have it as an argument.</li>
+<li>
+<strong>timeZone</strong> : your time zone</li>
+<li>
+<strong>merchantCalculationsUrl</strong> : if you want to use merchant calculations, specify your callback url here.
+Default: <code>null</code>
+</li>
+<li>
+<strong>merchantCalculationsAcceptCoupons</strong> : if you accept coupons and want to process them in your merchant 
+calculations callback, then set this value to <code>true</code>. Default: <code>false</code>
+</li>
+<li>
+<strong>merchantCalculationsAcceptGiftCertifications</strong> : if you accept gift certificats and want to process
+them in your merchant calculations callback, then set this value to <code>true</code>. Default: <code>false</code>
+</li>
+<li>
+<strong>merchantCalculationsShipping</strong> : if you want to calculate the shipping rates in your merchant
+calculations callback, then set this value to <code>true</code>. Default: <code>false</code>
+</li>
+</ul><p>Example</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">({</span>
+    <span class="nx">merchantNumber</span> <span class="o">:</span> <span class="s1">'12345612345'</span><span class="p">,</span>
+    <span class="nx">merchantKey</span> <span class="o">:</span> <span class="s1">'234543254345345'</span><span class="p">,</span>
+    <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span><span class="p">,</span>
+    <span class="nx">timeZone</span> <span class="o">:</span> <span class="s1">'America/New_York'</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h3>.createCart(callback)</h3>
+
+<p>Create a new instance of <code>ShoppingCart</code></p>
+
+<p><strong>callback</strong> - </p>
+
+<h3>.postXML(url, xml, callback)</h3>
+
+<p>Post <code>xml</code> to <code>url</code> via an HTTP request.</p>
+
+<p><strong>url</strong> - </p>
+
+<p><strong>xml</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Before being used, <code>url</code> is processed by replacing '{merchantNumber}' 
+and '{merchantKey}' with <code>settings.merchantNumber</code> and 
+<code>settings.merchantKey</code> respectively.</p>
+
+<h3>.parseXML(xml, callback)</h3>
+
+<p>Parse a string of XML and convert it to a JavaScript object.</p>
+
+<p><strong>xml</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>This function processes a string of XML and converts it to
+a JavaScript object. Google's XML tags consistently replace
+spaces with '-'. We replace each '-' and the following character
+with just the capitalized character which follows the '-' by using
+the <code>camelCaseObjectKeys()</code> function.</p>
+
+<p>This gives us consistent camel case objects returned from Google.</p>
+
+<hr><h1>ShoppingCart(GoogleCheckout)</h1>
+
+<p>The <code>ShoppingCart</code> module provides methods for adding items, adding shipping options
+and submitting a shopping cart to Google. After submitting the shopping cart to 
+Google, you will receive a URL to redirect your user to.</p>
+
+<p><strong>GoogleCheckout</strong> - A GoogleCheckout instance object.</p>
+
+<p>There is no point in calling the constructor manually. You can get an
+instance of <code>ShoppingCart</code> like this</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">gc</span><span class="p">.</span><span class="nx">createCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<p>Here is a complete example of building a cart and pushing it to Google</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">gc</span><span class="p">.</span><span class="nx">createCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">'Crayons'</span><span class="p">,</span> 
+        <span class="nx">description</span> <span class="o">:</span> <span class="s1">'42 Assorted Crayons'</span><span class="p">,</span> 
+        <span class="nx">unitPrice</span> <span class="o">:</span> <span class="mf">3.99</span><span class="p">,</span> 
+        <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span><span class="p">,</span> 
+        <span class="nx">quantity</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="nx">item_id</span> <span class="o">:</span> <span class="s1">'CRAY42'</span>
+    <span class="p">});</span>
+
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addShipMethod</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">'FedEx Ground'</span><span class="p">,</span>
+        <span class="nx">price</span> <span class="o">:</span> <span class="mf">3.00</span><span class="p">,</span>
+        <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span>
+    <span class="p">});</span>
+
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">postCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">redirectUrl</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//deal with the error</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h3>.addItem(name, description, unitPrice, quantity, item_id, currency)</h3>
+
+<p>Add an item to the list of items currently in the shopping cart.</p>
+
+<p><strong>name</strong> - </p>
+
+<p><strong>description</strong> - </p>
+
+<p><strong>unitPrice</strong> - </p>
+
+<p><strong>quantity</strong> - </p>
+
+<p><strong>item_id</strong> - </p>
+
+<p><strong>currency</strong> - </p>
+
+<p>You may optionally pass an ItemObject in place of Name. The ItemObject should
+contain all the properties in the example listed below, with the exception of
+the currency property. If the currency property is omitted, then the default
+currency will be used.</p>
+
+<div class="highlight">
+<pre><span class="nx">ItemObject</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="nx">name</span> <span class="o">:</span> <span class="s1">''</span><span class="p">,</span> 
+    <span class="nx">description</span> <span class="o">:</span> <span class="s1">''</span><span class="p">,</span> 
+    <span class="nx">unitPrice</span> <span class="o">:</span> <span class="mf">1.23</span><span class="p">,</span> 
+    <span class="nx">currency</span> <span class="o">:</span> <span class="s1">''</span><span class="p">,</span> 
+    <span class="nx">quantity</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="nx">item_id</span> <span class="o">:</span> <span class="s1">''</span> 
+<span class="p">};</span>
+</pre>
+</div>
+
+
+<p>Example</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">gc</span><span class="p">.</span><span class="nx">createCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">'Crayons'</span><span class="p">,</span> 
+        <span class="nx">description</span> <span class="o">:</span> <span class="s1">'42 Assorted Crayons'</span><span class="p">,</span> 
+        <span class="nx">unitPrice</span> <span class="o">:</span> <span class="mf">3.99</span><span class="p">,</span> 
+        <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span><span class="p">,</span> 
+        <span class="nx">quantity</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="nx">item_id</span> <span class="o">:</span> <span class="s1">'CRAY42'</span>
+    <span class="p">});</span>
+
+    <span class="c1">//or</span>
+
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addItem</span><span class="p">(</span><span class="s1">'Jug of Juice'</span><span class="p">,</span> <span class="s1">'The good juice, made from natural ingredients'</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'GOODJUC'</span><span class="p">,</span> <span class="s1">'USD'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h3>.addShipMethod(ShippingMethodObject)</h3>
+
+<p>Add a shipping option to the shopping cart</p>
+
+<p><strong>ShippingMethodObject</strong> - </p>
+
+<div class="highlight">
+<pre><span class="nx">ShipMethodObject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="o">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="nx">price</span> <span class="o">:</span> <span class="mf">1.23</span><span class="p">,</span>
+    <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span>
+<span class="p">};</span>
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">gc</span><span class="p">.</span><span class="nx">createCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addShipMethod</span><span class="p">({</span>
+        <span class="nx">name</span> <span class="o">:</span> <span class="s1">'FedEx Ground'</span><span class="p">,</span>
+        <span class="nx">price</span> <span class="o">:</span> <span class="mf">3.00</span><span class="p">,</span>
+        <span class="nx">currency</span> <span class="o">:</span> <span class="s1">'USD'</span>
+    <span class="p">});</span>
+
+    <span class="c1">//or</span>
+
+    <span class="nx">cart</span><span class="p">.</span><span class="nx">addShipMethod</span><span class="p">(</span><span class="s1">'UPS Ground'</span><span class="p">,</span> <span class="mf">3.00</span><span class="p">,</span> <span class="s1">'USD'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h3>.postCart(Callback, ReturnXML)</h3>
+
+<p>Build and post the shopping cart to Google</p>
+
+<p><strong>Callback</strong> - </p>
+
+<p><strong>ReturnXML</strong> - If specified, callback will be called with the XML that would be supplied to Google.</p>
+
+<p>Example</p>
+
+<div class="highlight">
+<pre><span class="nx">cart</span><span class="p">.</span><span class="nx">postCart</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">redirectUrl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//deal with the error</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redirectUrl</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<p>TODO</p>
+
+<ul>
+<li>Tax Tables</li>
+<li>Shipping Restrictions</li>
+</ul><p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#checkout_api">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#checkout_api</a></p>
+
+<hr><h1>OrderProcessing(GoogleCheckout)</h1>
+
+<p>The <code>OrderProcessing</code> module is used to charge and update order information</p>
+
+<p><strong>GoogleCheckout</strong> - a <code>GoogleCheckout</code> instance</p>
+
+<p>There is no need to manually create an instance of this constructor function. Once you
+have an instance of GoogleCheckout, you already have an instance...</p>
+
+<p>Example</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GoogleCheckout</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">gc</span><span class="p">.</span><span class="nx">OrderProcessing</span><span class="p">.</span><span class="nx">chargeAndShipOrder</span><span class="p">(</span>
+    <span class="s1">'1234569034'</span>
+    <span class="p">,</span> <span class="mf">50.24</span>
+    <span class="p">,</span> <span class="p">[</span><span class="s1">'1Z2343452345234'</span>
+    <span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//deal with the error</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">//process the response</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h3>.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)</h3>
+
+<p>Charge and Ship an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>amount</strong> - </p>
+
+<p><strong>trackingData</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Charge_And_Ship_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Charge_And_Ship_Order</a></p>
+
+<h3>.refundOrder(googleOrderNumber, amount, reason, comment, callback)</h3>
+
+<p>Refund an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>amount</strong> - </p>
+
+<p><strong>reason</strong> - </p>
+
+<p><strong>comment</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Refund_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Refund_Order</a></p>
+
+<h3>.cancelOrder(googleOrderNumber, reason, comment, callback)</h3>
+
+<p>Cancel an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>reason</strong> - </p>
+
+<p><strong>comment</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Cancel_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Cancel_Order</a></p>
+
+<h3>.authorizeOrder(googleOrderNumber, callback)</h3>
+
+<p>Authorize an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Authorize_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Authorize_Order</a></p>
+
+<h3>.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)</h3>
+
+<p>Add Merchant order number to an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>merchantOrderNumber</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Merchant_Order_Number">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Merchant_Order_Number</a></p>
+
+<h3>.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)</h3>
+
+<p>Send the buyer a message</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>message</strong> - </p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Send_Buyer_Message">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Send_Buyer_Message</a></p>
+
+<h3>.shipItems(googleOrderNumber, items, sendEmail, callback)</h3>
+
+<p>Ship Items on an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>items</strong> - </p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<div class="highlight">
+<pre><span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">item_id</span> <span class="o">:</span> <span class="mi">123456</span><span class="p">,</span>
+        <span class="nx">trackingData</span> <span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="nx">carrier</span> <span class="o">:</span> <span class="s1">'UPS'</span><span class="p">,</span> <span class="nx">trackingNumber</span> <span class="o">:</span> <span class="s1">'55555555'</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="nx">carrier</span> <span class="o">:</span> <span class="s1">'UPS'</span><span class="p">,</span> <span class="nx">trackingNumber</span> <span class="o">:</span> <span class="s1">'55555556'</span> <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Ship_Items">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Ship_Items</a></p>
+
+<h3>.backorderItems(googleOrderNumber, items, sendEmail, callback)</h3>
+
+<p>Backorder items on an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>items</strong> - an aray of <code>item_id</code>s</p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Backorder_Items">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Backorder_Items</a></p>
+
+<h3>.returnItems(googleOrderNumber, items, sendEmail, callback)</h3>
+
+<p>Return items on an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>items</strong> - an aray of <code>item_id</code>s</p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Return_Items">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Return_Items</a></p>
+
+<h3>.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)</h3>
+
+<p>Cancel items on an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>items</strong> - an aray of <code>item_id</code>s</p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>reason</strong> - </p>
+
+<p><strong>comment</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Cancel_Items">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Cancel_Items</a></p>
+
+<h3>.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)</h3>
+
+<p>Reset shipping information for items on an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>items</strong> - an aray of <code>item_id</code>s</p>
+
+<p><strong>sendEmail</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Resetting_Shipping_Status">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Resetting_Shipping_Status</a></p>
+
+<h3>.processOrder(googleOrderNumber, callback)</h3>
+
+<p>Process an Order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order</a></p>
+
+<h3>.deliverOrder(googleOrderNumber, trackingData, callback)</h3>
+
+<p>Deliver an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>trackingData</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<div class="highlight">
+<pre><span class="nx">trackingData</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">carrier</span> <span class="o">:</span> <span class="s1">'UPS'</span><span class="p">,</span>
+        <span class="nx">trackingNumber</span> <span class="o">:</span> <span class="s1">'1Z2343452345234'</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order</a></p>
+
+<h3>.addTrackingData(googleOrderNumber, trackingData, callback)</h3>
+
+<p>Add tracking Data to an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>trackingData</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<div class="highlight">
+<pre><span class="nx">trackingData</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nx">carrier</span> <span class="o">:</span> <span class="s1">'UPS'</span><span class="p">,</span>
+        <span class="nx">trackingNumber</span> <span class="o">:</span> <span class="s1">'1Z2343452345234'</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data</a></p>
+
+<h3>.archiveOrder(googleOrderNumber, callback)</h3>
+
+<p>Archive an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order</a></p>
+
+<h3>.unarchiveOrder(googleOrderNumber, callback)</h3>
+
+<p>Unarchive an order</p>
+
+<p><strong>googleOrderNumber</strong> - </p>
+
+<p><strong>callback</strong> - </p>
+
+<p>Documentation</p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order</a></p>
+
+<h3>.orderListRequest</h3>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Report_API.html#Sending_an_Order_Report_API_Request">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Report_API.html#Sending_an_Order_Report_API_Request</a></p>
+
+<hr><h1>MerchantCalculations(objGoogleCheckout)</h1>
+
+<p>Instantiate an instance of the GoogleCheckout MerchantCalculations prototype</p>
+
+<p><strong>objGoogleCheckout</strong> - an instance of a <code>GoogleCheckout</code> object object</p>
+
+<h2>Examples</h2>
+
+<h3>.merchantCalculationCallback</h3>
+
+<p>{
+    shoppingCart : {
+        //google-supplied shopping cart data
+    },
+    addresses : [
+        {
+            id : 'google-supplied-id',
+            countryCode : 'google-supplied-country-code',
+            city : 'google-supplied-city',
+            region : 'google-supplied-region',
+            postalCode : 'google-supplied-postal-code',</p>
+
+<pre><code>        //if callbacks enabled for shipping
+        shippingName : 'google-supplied-shipping-name',
+        shippingRate : 'REQUIRED',
+        shippingCurrency : 'OPTIONAL-OR-USE-DEFAULT',
+        shippable : 'REQUIRED',
+
+        //if callbacks enabled for tax
+        totalTax : 'REQUIRED',
+
+        //if callbacks enabled for merchantCodes
+        merchantCodes : [
+            {
+                type : 'REQUIRED (coupon or gift-certificate) ',
+                valid : 'REQUIRED (true or false)',
+                calculatedAmount : 'REQUIRED',
+                message: 'REQUIRED/OPTIONAL - idk'
+            }
+        ]
+    }
+]
+</code></pre>
+
+<p>}</p>
+
+<hr><h1>Polling(objGoogleCheckout)</h1>
+
+<p>Instantiate an instance of the GoogleCheckout Polling prototype</p>
+
+<p><strong>objGoogleCheckout</strong> - An instance of a GoogleCheckout object</p>
+
+<h2>Examples</h2>
+
+<pre><code>var gc = new GoogleCheckout({ merchantNumber : '1234', merchantKey : 'ABCD', currency : 'USD'});
+var p = new Polling(gc);
+</code></pre>
+
+<p>This is not really necessary though because an instance of GoogleCheckout contains
+an instance of Polling</p>
+
+<pre><code>var gc = new GoogleCheckout({ merchantNumber : '1234', merchantKey : 'ABCD', currency : 'USD'});
+
+gc.Polling.on('newOrderNotification', function (order) {
+  console.log(order)
+});
+
+gc.Polling.run();
+</code></pre>
+
+<h2>Continue Token Events</h2>
+
+<ul>
+<li>notificationDataTokenResponse - 'Raw'</li>
+<li>continueToken</li>
+</ul><h2>Notification Events</h2>
+
+<ul>
+<li>notificationDataResponse - 'Raw'</li>
+<li>newOrderNotification</li>
+<li>authorizationAmountNotification</li>
+<li>riskInformationNotification</li>
+<li>orderStateChangeNotification</li>
+<li>chargeAmountNotification</li>
+<li>refundAmountNotification</li>
+<li>chargebackAmountNotification</li>
+</ul><h3>.notificationDataTokenRequest(StartTime, Callback)</h3>
+
+<p>Request a <em>continueToken</em> for polling</p>
+
+<p><strong>StartTime</strong> - </p>
+
+<p><strong>Callback</strong> - function</p>
+
+<h2>Documentation</h2>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-token-request">http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-token-request</a></p>
+
+<h3>.notificationDataRequest(ContinueToken, Callback)</h3>
+
+<p>Request notification data</p>
+
+<p><strong>ContinueToken</strong> - The token retrieved from Google by <code>notificationDataTokenRequest</code></p>
+
+<p><strong>Callback</strong> - function</p>
+
+<p>Documentation: </p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-request">http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-request</a></p>
+
+<h3>.run(ContinueToken)</h3>
+
+<p>Start the timer to poll events from Google</p>
+
+<p><strong>ContinueToken</strong> - Optional - The token retrieved from Google by <code>notificationDataTokenRequest</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wankdanker">wankdanker</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
