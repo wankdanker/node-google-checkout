@@ -71,6 +71,7 @@ var gc = new GoogleCheckout({
 });
 ```
 
+-----------
 ###.createCart(callback)
 Create a new instance of `ShoppingCart`
 
@@ -79,6 +80,7 @@ __callback__ -
 
 
 
+-----------
 ###.postXML(url, xml, callback)
 Post `xml` to `url` via an HTTP request.
 
@@ -93,6 +95,7 @@ Before being used, `url` is processed by replacing '{merchantNumber}'
 and '{merchantKey}' with `settings.merchantNumber` and 
 `settings.merchantKey` respectively.
 
+-----------
 ###.parseXML(xml, callback)
 Parse a string of XML and convert it to a JavaScript object.
 
@@ -163,6 +166,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
+-----------
 ###.addItem(name, description, unitPrice, quantity, item_id, currency)
 Add an item to the list of items currently in the shopping cart.
 
@@ -216,6 +220,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
+-----------
 ###.addShipMethod(ShippingMethodObject)
 Add a shipping option to the shopping cart
 
@@ -246,6 +251,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
+-----------
 ###.postCart(Callback, ReturnXML)
 Build and post the shopping cart to Google
 
@@ -307,6 +313,7 @@ gc.OrderProcessing.chargeAndShipOrder(
 });
 ```
 
+-----------
 ###.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)
 Charge and Ship an order
 
@@ -323,6 +330,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Charge_And_Ship_Order
 
+-----------
 ###.refundOrder(googleOrderNumber, amount, reason, comment, callback)
 Refund an order
 
@@ -341,6 +349,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Refund_Order
 
+-----------
 ###.cancelOrder(googleOrderNumber, reason, comment, callback)
 Cancel an order
 
@@ -357,6 +366,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Cancel_Order
 
+-----------
 ###.authorizeOrder(googleOrderNumber, callback)
 Authorize an order
 
@@ -369,6 +379,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Authorize_Order
 
+-----------
 ###.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)
 Add Merchant order number to an order
 
@@ -383,6 +394,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Merchant_Order_Number
 
+-----------
 ###.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)
 Send the buyer a message
 
@@ -399,6 +411,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Send_Buyer_Message
 
+-----------
 ###.shipItems(googleOrderNumber, items, sendEmail, callback)
 Ship Items on an order
 
@@ -427,6 +440,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Ship_Items
 
+-----------
 ###.backorderItems(googleOrderNumber, items, sendEmail, callback)
 Backorder items on an order
 
@@ -443,6 +457,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Backorder_Items
 
+-----------
 ###.returnItems(googleOrderNumber, items, sendEmail, callback)
 Return items on an order
 
@@ -459,6 +474,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Return_Items
 
+-----------
 ###.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)
 Cancel items on an order
 
@@ -479,6 +495,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Cancel_Items
 
+-----------
 ###.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)
 Reset shipping information for items on an order
 
@@ -495,6 +512,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Resetting_Shipping_Status
 
+-----------
 ###.processOrder(googleOrderNumber, callback)
 Process an Order
 
@@ -507,6 +525,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order
 
+-----------
 ###.deliverOrder(googleOrderNumber, trackingData, callback)
 Deliver an order
 
@@ -530,6 +549,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order
 
+-----------
 ###.addTrackingData(googleOrderNumber, trackingData, callback)
 Add tracking Data to an order
 
@@ -553,6 +573,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data
 
+-----------
 ###.archiveOrder(googleOrderNumber, callback)
 Archive an order
 
@@ -565,6 +586,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order
 
+-----------
 ###.unarchiveOrder(googleOrderNumber, callback)
 Unarchive an order
 
@@ -578,6 +600,7 @@ Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order
 
+-----------
 ###.orderListRequest
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Report_API.html#Sending_an_Order_Report_API_Request
 
@@ -594,6 +617,7 @@ __An__ - instance of a GoogleCheckout object
 
 ## Examples
 
+-----------
 ###.merchantCalculationCallback
 {
 	shoppingCart : {
@@ -673,6 +697,7 @@ an instance of Polling
 - refundAmountNotification
 - chargebackAmountNotification
 
+-----------
 ###.notificationDataTokenRequest(StartTime, Callback)
 Request a _continueToken_ for polling
 
@@ -685,6 +710,7 @@ __Callback__ - function
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-token-request
 
+-----------
 ###.notificationDataRequest(ContinueToken, Callback)
 Request notification data
 
@@ -697,6 +723,7 @@ Documentation:
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-request
 
+-----------
 ###.run
 @param {String} ContinueToken Optional - The token retrieved from Google by `notificationDataTokenRequest`
 

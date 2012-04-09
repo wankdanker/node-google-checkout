@@ -68,6 +68,7 @@ function docifyFile(file) {
 			}
 			else {
 				//write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
+				writeln('-----------');
 				write('###' + '.' + block.ctx.name);
 			}
 			
