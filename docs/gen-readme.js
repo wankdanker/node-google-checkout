@@ -89,11 +89,6 @@ function docifyFile(file) {
 				write(')');
 			}
 			
-			if (block.ctx.hasOwnProperty('constructor')) {
-				writeln('');
-				writeln('----------');
-			}
-			
 			writeln('');
 			writeln('');
 			
