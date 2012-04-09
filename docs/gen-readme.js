@@ -68,7 +68,7 @@ function docifyFile(file) {
 			}
 			else {
 				//write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
-				write('##' + '.' + block.ctx.name);
+				write('###' + '.' + block.ctx.name);
 			}
 			
 			var params = getParams(block.tags);
@@ -87,6 +87,11 @@ function docifyFile(file) {
 				});
 				
 				write(')');
+			}
+			
+			if (block.ctx.hasOwnProperty('constructor')) {
+				writeln('');
+				writeln('----------');
 			}
 			
 			writeln('');
