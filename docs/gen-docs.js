@@ -23,6 +23,15 @@ outstream.on('open', function () {
 	writeln('');
 	writeln('This API is currently working in the sandbox environment. I am working on documentation.');
 	writeln('');
+	writeln('Dependencies');
+	writeln('------------');
+	writeln('');
+	
+	map(package.dependencies, function (pack, version) {
+		writeln(' - ' + pack + ' version ' + version);
+	});
+	
+	writeln('');
 	
 	files.forEach(function (file) {
 		if (/\.js$/.test(file)) {
