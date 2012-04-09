@@ -14,7 +14,6 @@ var files = [
 var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
-	writeln('');
 	writeln('node-google-checkout');
 	writeln('====================');
 	writeln('');
@@ -87,6 +86,11 @@ function docifyFile(file) {
 				});
 				
 				write(')');
+			}
+			
+			if (!block.ctx.hasOwnProperty('constructor')){
+				writeln('');
+				writeln('-----------');
 			}
 			
 			writeln('');
