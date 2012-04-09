@@ -14,7 +14,7 @@ This API is currently working in the sandbox environment. I am working on docume
 
 -----------
 
-##GoogleCheckout(settings)
+#GoogleCheckout(settings)
 
 The `GoogleCheckout` constructor function.
 
@@ -69,11 +69,11 @@ var gc = new GoogleCheckout({
 });
 ```
 
-###.createCart(callback)
+##.createCart(callback)
 
 Create a new instance of `ShoppingCart`
 
-###.postXML(url, xml, callback)
+##.postXML(url, xml, callback)
 
 Post `xml` to `url` via an HTTP request.
 
@@ -81,7 +81,7 @@ Before being used, `url` is processed by replacing '{merchantNumber}'
 and '{merchantKey}' with `settings.merchantNumber` and 
 `settings.merchantKey` respectively.
 
-###.parseXML(xml, callback)
+##.parseXML(xml, callback)
 
 Parse a string of XML and convert it to a JavaScript object.
 
@@ -96,7 +96,7 @@ This gives us consistent camel case objects returned from Google.
 
 -----------
 
-##ShoppingCart(GoogleCheckout)
+#ShoppingCart(GoogleCheckout)
 
 The `ShoppingCart` module provides methods for adding items, adding shipping options
 and submitting a shopping cart to Google. After submitting the shopping cart to 
@@ -145,7 +145,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###.addItem(name, description, unitPrice, quantity, item_id, currency)
+##.addItem(name, description, unitPrice, quantity, item_id, currency)
 
 Add an item to the list of items currently in the shopping cart.
 
@@ -186,7 +186,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###.addShipMethod(ShippingMethodObject)
+##.addShipMethod(ShippingMethodObject)
 
 Add a shipping option to the shopping cart
 
@@ -214,7 +214,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###.postCart(Callback, ReturnXML)
+##.postCart(Callback, ReturnXML)
 
 Build and post the shopping cart to Google
 
@@ -242,16 +242,16 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#chec
 
 -----------
 
-##OrderProcessing
+#OrderProcessing
 
 The `OrderProcessing` module
-###.chargeAndShipOrder
+##.chargeAndShipOrder
 
 Financial Requests
-###.addMerchantOrderNumber
+##.addMerchantOrderNumber
 
 Fulfillment Requests
-###.shipItems
+##.shipItems
 
 ## items 
 
@@ -262,18 +262,18 @@ Fulfillment Requests
 			{ carrier : 'UPS', trackingNumber : '55555556' }
 		]
 }]
-###.processOrder
+##.processOrder
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order
-###.deliverOrder
+##.deliverOrder
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order
-###.addTrackingData
+##.addTrackingData
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data
-###.archiveOrder
+##.archiveOrder
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order
-###.unarchiveOrder
+##.unarchiveOrder
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order
