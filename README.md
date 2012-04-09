@@ -292,16 +292,17 @@ gc.OrderProcessing.chargeAndShipOrder(
 ###.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)
 Charge and Ship an order
 
-
 - __googleOrderNumber__ - 
 - __amount__ - 
 - __trackingData__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Charge_And_Ship_Order
 
 ###.refundOrder(googleOrderNumber, amount, reason, comment, callback)
 Refund an order
-
 
 - __googleOrderNumber__ - 
 - __amount__ - 
@@ -309,43 +310,54 @@ Refund an order
 - __comment__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Refund_Order
 
 ###.cancelOrder(googleOrderNumber, reason, comment, callback)
 Cancel an order
-
 
 - __googleOrderNumber__ - 
 - __reason__ - 
 - __comment__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Cancel_Order
 
 ###.authorizeOrder(googleOrderNumber, callback)
 Authorize an order
 
-
 - __googleOrderNumber__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial_Commands.html#Authorize_Order
 
 ###.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)
 Add Merchant order number to an order
-
 
 - __googleOrderNumber__ - 
 - __merchantOrderNumber__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Merchant_Order_Number
 
 ###.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)
 Send the buyer a message
-
 
 - __googleOrderNumber__ - 
 - __message__ - 
 - __sendEmail__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Send_Buyer_Message
 
 ###.shipItems(googleOrderNumber, items, sendEmail, callback)
 Ship Items on an order
@@ -367,29 +379,36 @@ items = [
 ];
 ```
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Ship_Items
+
 ###.backorderItems(googleOrderNumber, items, sendEmail, callback)
 Backorder items on an order
-
 
 - __googleOrderNumber__ - 
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Backorder_Items
 
 ###.returnItems(googleOrderNumber, items, sendEmail, callback)
 Return items on an order
 
-
 - __googleOrderNumber__ - 
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Return_Items
 
 ###.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)
 Cancel items on an order
-
 
 - __googleOrderNumber__ - 
 - __items__ - an aray of `item_id`s
@@ -398,16 +417,21 @@ Cancel items on an order
 - __comment__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Cancel_Items
 
 ###.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)
 Reset shipping information for items on an order
-
 
 - __googleOrderNumber__ - 
 - __items__ - an aray of `item_id`s
 - __sendEmail__ - 
 - __callback__ - 
 
+Documentation
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item_Shipping.html#Resetting_Shipping_Status
 
 ###.processOrder(googleOrderNumber, callback)
 Process an Order
