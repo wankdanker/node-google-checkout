@@ -14,7 +14,7 @@ This API is currently working in the sandbox environment. I am working on docume
 
 -----------
 
-#GoogleCheckout(settings)
+##GoogleCheckout(settings)
 
 The `GoogleCheckout` constructor function.
 
@@ -96,7 +96,7 @@ This gives us consistent camel case objects returned from Google.
 
 -----------
 
-#ShoppingCart(GoogleCheckout)
+##ShoppingCart(GoogleCheckout)
 
 The `ShoppingCart` module provides methods for adding items, adding shipping options
 and submitting a shopping cart to Google. After submitting the shopping cart to 
@@ -242,7 +242,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#chec
 
 -----------
 
-#OrderProcessing
+##OrderProcessing
 
 The `OrderProcessing` module
 ###.chargeAndShipOrder
