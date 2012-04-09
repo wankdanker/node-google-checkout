@@ -93,6 +93,8 @@ function docifyFile(file) {
 			writeln(block.description.summary)
 			writeln('');
 			
+			writeln('##Methods');
+			
 			if (params.length) {
 				params.forEach(function (param, ix) {
 					writeln('- __' + param.name + '__ - ' + param.description);
