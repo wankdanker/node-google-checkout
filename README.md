@@ -586,10 +586,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Rep
 
 -----------
 
-#MerchantCalculations(An)
+#MerchantCalculations(objGoogleCheckout)
 Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
 
-__An__ - instance of a GoogleCheckout object
+__objGoogleCheckout__ - an instance of a `GoogleCheckout` object object
 
 
 ## Examples
@@ -697,8 +697,11 @@ Documentation:
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.html#Submitting_a_notification-data-request
 
-###.run
-@param {String} ContinueToken Optional - The token retrieved from Google by `notificationDataTokenRequest`
+###.run(ContinueToken)
+Start the timer to poll events from Google
+
+
+__ContinueToken__ - Optional - The token retrieved from Google by `notificationDataTokenRequest`
 
 
 
