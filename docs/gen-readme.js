@@ -96,6 +96,7 @@ function docifyFile(file) {
 			if (params.length) {
 				params.forEach(function (param, ix) {
 					writeln('__' + param.name + '__ - ' + param.description);
+					writeln('');
 				});
 			}
 			
