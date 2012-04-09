@@ -93,7 +93,7 @@ function docifyFile(file) {
 			writeln(block.description.summary)
 			writeln('');
 			
-			writeln('##Methods');
+			writeln('###Arguments');
 			
 			if (params.length) {
 				params.forEach(function (param, ix) {
