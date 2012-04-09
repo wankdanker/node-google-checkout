@@ -17,7 +17,7 @@ This API is currently working in the sandbox environment. I am working on docume
 #GoogleCheckout(settings)
 The `GoogleCheckout` constructor function.
 
-- __settings__ - An object of settings
+__settings__ - An object of settings
 
 This is the main constructor function and where all of the magic starts.
 Once you have an instance of `GoogleCheckout` you have access to all of
@@ -74,15 +74,15 @@ var gc = new GoogleCheckout({
 Create a new instance of `ShoppingCart`
 
 
-- __callback__ - 
+__callback__ - 
 
 
 ###.postXML(url, xml, callback)
 Post `xml` to `url` via an HTTP request.
 
-- __url__ - 
-- __xml__ - 
-- __callback__ - 
+__url__ - 
+__xml__ - 
+__callback__ - 
 
 Before being used, `url` is processed by replacing '{merchantNumber}' 
 and '{merchantKey}' with `settings.merchantNumber` and 
@@ -91,8 +91,8 @@ and '{merchantKey}' with `settings.merchantNumber` and
 ###.parseXML(xml, callback)
 Parse a string of XML and convert it to a JavaScript object.
 
-- __xml__ - 
-- __callback__ - 
+__xml__ - 
+__callback__ - 
 
 This function processes a string of XML and converts it to
 a JavaScript object. Google's XML tags consistently replace
@@ -110,7 +110,7 @@ The `ShoppingCart` module provides methods for adding items, adding shipping opt
 and submitting a shopping cart to Google. After submitting the shopping cart to 
 Google, you will receive a URL to redirect your user to.
 
-- __GoogleCheckout__ - A GoogleCheckout instance object.
+__GoogleCheckout__ - A GoogleCheckout instance object.
 
 There is no point in calling the constructor manually. You can get an
 instance of `ShoppingCart` like this
@@ -158,12 +158,12 @@ gc.createCart(function (err, cart) {
 ###.addItem(name, description, unitPrice, quantity, item_id, currency)
 Add an item to the list of items currently in the shopping cart.
 
-- __name__ - 
-- __description__ - 
-- __unitPrice__ - 
-- __quantity__ - 
-- __item_id__ - 
-- __currency__ - 
+__name__ - 
+__description__ - 
+__unitPrice__ - 
+__quantity__ - 
+__item_id__ - 
+__currency__ - 
 
 You may optionally pass an ItemObject in place of Name. The ItemObject should
 contain all the properties in the example listed below, with the exception of
@@ -205,7 +205,7 @@ gc.createCart(function (err, cart) {
 ###.addShipMethod(ShippingMethodObject)
 Add a shipping option to the shopping cart
 
-- __ShippingMethodObject__ - 
+__ShippingMethodObject__ - 
 
 ```javascript
 ShipMethodObject = {
@@ -234,8 +234,8 @@ gc.createCart(function (err, cart) {
 ###.postCart(Callback, ReturnXML)
 Build and post the shopping cart to Google
 
-- __Callback__ - 
-- __ReturnXML__ - If specified, callback will be called with the XML that would be supplied to Google.
+__Callback__ - 
+__ReturnXML__ - If specified, callback will be called with the XML that would be supplied to Google.
 
 Example
 
@@ -265,7 +265,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#chec
 #OrderProcessing(GoogleCheckout)
 The `OrderProcessing` module is used to charge and update order information
 
-- __GoogleCheckout__ - a `GoogleCheckout` instance
+__GoogleCheckout__ - a `GoogleCheckout` instance
 
 There is no need to manually create an instance of this constructor function. Once you
 have an instance of GoogleCheckout, you already have an instance...
@@ -292,10 +292,10 @@ gc.OrderProcessing.chargeAndShipOrder(
 ###.chargeAndShipOrder(googleOrderNumber, amount, trackingData, callback)
 Charge and Ship an order
 
-- __googleOrderNumber__ - 
-- __amount__ - 
-- __trackingData__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__amount__ - 
+__trackingData__ - 
+__callback__ - 
 
 Documentation
 
@@ -304,11 +304,11 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial
 ###.refundOrder(googleOrderNumber, amount, reason, comment, callback)
 Refund an order
 
-- __googleOrderNumber__ - 
-- __amount__ - 
-- __reason__ - 
-- __comment__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__amount__ - 
+__reason__ - 
+__comment__ - 
+__callback__ - 
 
 Documentation
 
@@ -317,10 +317,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial
 ###.cancelOrder(googleOrderNumber, reason, comment, callback)
 Cancel an order
 
-- __googleOrderNumber__ - 
-- __reason__ - 
-- __comment__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__reason__ - 
+__comment__ - 
+__callback__ - 
 
 Documentation
 
@@ -329,8 +329,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial
 ###.authorizeOrder(googleOrderNumber, callback)
 Authorize an order
 
-- __googleOrderNumber__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__callback__ - 
 
 Documentation
 
@@ -339,9 +339,9 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Financial
 ###.addMerchantOrderNumber(googleOrderNumber, merchantOrderNumber, callback)
 Add Merchant order number to an order
 
-- __googleOrderNumber__ - 
-- __merchantOrderNumber__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__merchantOrderNumber__ - 
+__callback__ - 
 
 Documentation
 
@@ -350,10 +350,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###.sendBuyerMessage(googleOrderNumber, message, sendEmail, callback)
 Send the buyer a message
 
-- __googleOrderNumber__ - 
-- __message__ - 
-- __sendEmail__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__message__ - 
+__sendEmail__ - 
+__callback__ - 
 
 Documentation
 
@@ -362,10 +362,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###.shipItems(googleOrderNumber, items, sendEmail, callback)
 Ship Items on an order
 
-- __googleOrderNumber__ - 
-- __items__ - 
-- __sendEmail__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__items__ - 
+__sendEmail__ - 
+__callback__ - 
 
 ```javascript 
 items = [
@@ -386,10 +386,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item
 ###.backorderItems(googleOrderNumber, items, sendEmail, callback)
 Backorder items on an order
 
-- __googleOrderNumber__ - 
-- __items__ - an aray of `item_id`s
-- __sendEmail__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__items__ - an aray of `item_id`s
+__sendEmail__ - 
+__callback__ - 
 
 Documentation
 
@@ -398,10 +398,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item
 ###.returnItems(googleOrderNumber, items, sendEmail, callback)
 Return items on an order
 
-- __googleOrderNumber__ - 
-- __items__ - an aray of `item_id`s
-- __sendEmail__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__items__ - an aray of `item_id`s
+__sendEmail__ - 
+__callback__ - 
 
 Documentation
 
@@ -410,12 +410,12 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item
 ###.cancelItems(googleOrderNumber, items, sendEmail, reason, comment, callback)
 Cancel items on an order
 
-- __googleOrderNumber__ - 
-- __items__ - an aray of `item_id`s
-- __sendEmail__ - 
-- __reason__ - 
-- __comment__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__items__ - an aray of `item_id`s
+__sendEmail__ - 
+__reason__ - 
+__comment__ - 
+__callback__ - 
 
 Documentation
 
@@ -424,10 +424,10 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item
 ###.resetItemsShippingInformation(googleOrderNumber, items, sendEmail, callback)
 Reset shipping information for items on an order
 
-- __googleOrderNumber__ - 
-- __items__ - an aray of `item_id`s
-- __sendEmail__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__items__ - an aray of `item_id`s
+__sendEmail__ - 
+__callback__ - 
 
 Documentation
 
@@ -436,8 +436,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Line_Item
 ###.processOrder(googleOrderNumber, callback)
 Process an Order
 
-- __googleOrderNumber__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__callback__ - 
 
 Documentation
 
@@ -446,9 +446,9 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###.deliverOrder(googleOrderNumber, trackingData, callback)
 Deliver an order
 
-- __googleOrderNumber__ - 
-- __trackingData__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__trackingData__ - 
+__callback__ - 
 
 ```javascript
 trackingData = [
@@ -466,9 +466,9 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###.addTrackingData(googleOrderNumber, trackingData, callback)
 Add tracking Data to an order
 
-- __googleOrderNumber__ - 
-- __trackingData__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__trackingData__ - 
+__callback__ - 
 
 ```javascript
 trackingData = [
@@ -486,8 +486,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Lev
 ###.archiveOrder(googleOrderNumber, callback)
 Archive an order
 
-- __googleOrderNumber__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__callback__ - 
 
 Documentation
 
@@ -496,8 +496,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving
 ###.unarchiveOrder(googleOrderNumber, callback)
 Unarchive an order
 
-- __googleOrderNumber__ - 
-- __callback__ - 
+__googleOrderNumber__ - 
+__callback__ - 
 
 
 Documentation
@@ -515,7 +515,7 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Rep
 #MerchantCalculations(An)
 Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
 
-- __An__ - instance of a GoogleCheckout object
+__An__ - instance of a GoogleCheckout object
 
 ## Examples
 
@@ -562,7 +562,7 @@ Instantiate an instance of the GoogleCheckout MerchantCalculations prototype
 #Polling(objGoogleCheckout)
 Instantiate an instance of the GoogleCheckout Polling prototype
 
-- __objGoogleCheckout__ - An instance of a GoogleCheckout object
+__objGoogleCheckout__ - An instance of a GoogleCheckout object
 
 ## Examples
 
@@ -600,8 +600,8 @@ an instance of Polling
 ###.notificationDataTokenRequest(StartTime, Callback)
 Request a _continueToken_ for polling
 
-- __StartTime__ - 
-- __Callback__ - function
+__StartTime__ - 
+__Callback__ - function
 
 ## Documentation
 
@@ -610,8 +610,8 @@ http://code.google.com/apis/checkout/developer/Google_Checkout_Beta_Polling_API.
 ###.notificationDataRequest(ContinueToken, Callback)
 Request notification data
 
-- __ContinueToken__ - The token retrieved from Google by `notificationDataTokenRequest`
-- __Callback__ - function
+__ContinueToken__ - The token retrieved from Google by `notificationDataTokenRequest`
+__Callback__ - function
 
 Documentation: 
 
