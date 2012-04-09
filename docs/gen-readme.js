@@ -90,16 +90,20 @@ function docifyFile(file) {
 			}
 			
 			writeln('');
-			writeln(block.description.full);
-			
-			writeln('###Arguments');
+			writeln(block.description.summary)
+			writeln('');
 			
 			if (params.length) {
 				params.forEach(function (param, ix) {
 					writeln('- __' + param.name + '__ - ' + param.description);
 				});
 			}
+			
 			writeln('');
+			writeln(block.description.body);
+			
+		
+			
 		});
 	}
 	catch (e) {
