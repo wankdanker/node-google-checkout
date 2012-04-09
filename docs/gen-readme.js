@@ -7,12 +7,14 @@ var dox = require('dox'),
 var libPath = path.join(__dirname, '../lib');
 var files = [
 	'google-checkout.js',
-	'shopping-cart.js'
+	'shopping-cart.js',
+	'order-processing.js'
 ];
 
 var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
+	writeln('');
 	writeln('node-google-checkout');
 	writeln('====================');
 	writeln('');
@@ -49,7 +51,11 @@ function docifyFile(file) {
 		obj = dox.parseComments(data, { raw:true});
 		
 		obj.forEach(function (block) {
-			if (block.ignore) {
+			if (block.ignore || block.isPrivate) {
+				return;
+			}
+			
+			if (!block.ctx) {
 				return;
 			}
 			
@@ -61,7 +67,8 @@ function docifyFile(file) {
 				write('#' + block.ctx.name);
 			}
 			else {
-				write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
+				//write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
+				write('###' + '.' + block.ctx.name);
 			}
 			
 			var params = getParams(block.tags);

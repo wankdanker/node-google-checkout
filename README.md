@@ -1,3 +1,4 @@
+
 node-google-checkout
 ====================
 
@@ -70,32 +71,29 @@ var gc = new GoogleCheckout({
 });
 ```
 
-###GoogleCheckout.createCart(callback)
+###.createCart(callback)
 
 Create a new instance of `ShoppingCart`
 
-###GoogleCheckout.postXML(url, xml, callback)
+###.postXML(url, xml, callback)
 
 Post `xml` to `url` via an HTTP request.
 
-`url` is processed by replacing '{merchantNumber}' and '{merchantKey}'
-with `settings.merchantNumber` and `settings.merchantKey` respectively.
+Before being used, `url` is processed by replacing '{merchantNumber}' 
+and '{merchantKey}' with `settings.merchantNumber` and 
+`settings.merchantKey` respectively.
 
-###GoogleCheckout.parseXML(xml, callback)
+###.parseXML(xml, callback)
 
-Parse a string of xml and convert it to a JavaScript object.
+Parse a string of XML and convert it to a JavaScript object.
 
-This function processes a string of xml and converts it to
-a JavaScript object. Google's xml tags consistently replace
+This function processes a string of XML and converts it to
+a JavaScript object. Google's XML tags consistently replace
 spaces with '-'. We replace each '-' and the following character
 with just the capitalized character which follows the '-' by using
 the `camelCaseObjectKeys()` function.
 
 This gives us consistent camel case objects returned from Google.
-
-#camelCaseObjectKeys(obj)
-
-Process an object and replace key names with camel cased key names
 
 #ShoppingCart(GoogleCheckout)
 
@@ -146,7 +144,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###ShoppingCart.addItem(name, description, unitPrice, quantity, item_id, currency)
+###.addItem(name, description, unitPrice, quantity, item_id, currency)
 
 Add an item to the list of items currently in the shopping cart.
 
@@ -187,7 +185,7 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###ShoppingCart.addShipMethod(ShippingMethodObject)
+###.addShipMethod(ShippingMethodObject)
 
 Add a shipping option to the shopping cart
 
@@ -215,15 +213,63 @@ gc.createCart(function (err, cart) {
 });
 ```
 
-###ShoppingCart.postCart(Callback, ReturnXML)
+###.postCart(Callback, ReturnXML)
 
 Build and post the shopping cart to Google
 
-TODO
- - Tax Tables
- - Shipping Restrictions
+Example
+
+```javascript
+cart.postCart(function (err, redirectUrl) {
+	if (err) {
+		//deal with the error
+		return;
+	}
+
+	console.log(redirectUrl);
+});
+```
+
+## TODO
+- Tax Tables
+- Shipping Restrictions
 
 Documentation
 
 http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API.html#checkout_api
 
+#OrderProcessing
+
+The `OrderProcessing` module
+###.chargeAndShipOrder
+
+Financial Requests
+###.addMerchantOrderNumber
+
+Fulfillment Requests
+###.shipItems
+
+## items 
+
+[{
+		item_id : 123456,
+		trackingData : [
+			{ carrier : 'UPS', trackingNumber : '55555555' },
+			{ carrier : 'UPS', trackingNumber : '55555556' }
+		]
+}]
+###.processOrder
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Process_Order
+###.deliverOrder
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Deliver_Order
+###.addTrackingData
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Order_Level_Shipping.html#Add_Tracking_Data
+###.archiveOrder
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Archive_Order
+###.unarchiveOrder
+
+http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Archiving_Commands.html#Unarchive_Order
