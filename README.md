@@ -232,6 +232,7 @@ cart.postCart(function (err, redirectUrl) {
 ```
 
 TODO
+
 - Tax Tables
 - Shipping Restrictions
 
@@ -306,6 +307,7 @@ items = [
 		]
 	}
 ];
+```
 
 ##.backorderItems(googleOrderNumber, items, sendEmail, callback)
 
