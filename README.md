@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/wankdanker/node-google-checkout.png)](http://travis-ci.org/wankdanker/node-google-checkout)
 #node-google-checkout
 
 A Google Checkout API implementation for node.js
