@@ -1,3 +1,8 @@
+# DEFUNCT
+
+This module is no longer maintained or useful. Google deprecated Checkout in lieu of 
+Wallet. I stopped working on this as soon as Google made that announcement.
+
 # node-google-checkout
 
 A Google Checkout API implementation for node.js
