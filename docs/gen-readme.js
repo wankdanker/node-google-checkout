@@ -17,15 +17,15 @@ var files = [
 var outstream = fs.createWriteStream(path.join(__dirname, '../README.md'), { flags :'w', encoding : 'utf8' } );
 
 outstream.on('open', function () {
-	writeln('#node-google-checkout');
+	writeln('# node-google-checkout');
 	writeln('');
 	writeln(package.description);
 	writeln('');
-	writeln('##Status');
+	writeln('## Status');
 	writeln('');
 	writeln('This API is currently working in the sandbox environment. I am working on documentation.');
 	writeln('');
-	writeln('##Dependencies');
+	writeln('## Dependencies');
 	writeln('');
 	
 	map(package.dependencies, function (pack, version) {
@@ -64,11 +64,11 @@ function docifyFile(file) {
 				writeln('');
 				writeln('-----------');
 				writeln('');
-				write('#' + block.ctx.name);
+				write('# ' + block.ctx.name);
 			}
 			else {
 				//write('###' + block.ctx['constructor'] + '.' + block.ctx.name);
-				write('###' + '.' + block.ctx.name);
+				write('### ' + '.' + block.ctx.name);
 			}
 			
 			var params = getParams(block.tags);

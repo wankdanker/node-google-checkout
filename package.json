@@ -9,7 +9,8 @@
   "dependencies": {
     "sanitizer": "0.0.15",
     "request": "2.9.153",
-    "xml2js": "0.1.13"
+    "xml2js": "0.1.13",
+    "optimist": "0.3.1"
   },
   "devDependencies": {
     "dox": "0.3.0"
